@@ -35,6 +35,8 @@ python3 ~/.openclaw/skills/xai-oauth/scripts/xai-oauth.py refresh
 
 Tokens are stored at `~/.openclaw/xai-oauth.json`.
 
+`xai-oauth.py token` prints a live access token for local scripting. Do not paste that output into chat, logs, issues, PRs, or any agent-visible context.
+
 ## Notes
 
 - Uses PKCE (S256) — no client secret needed

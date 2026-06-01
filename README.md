@@ -17,6 +17,16 @@ Instead of dealing with X's developer API (rate limits, expensive credits, devel
 
 Under the hood, it calls xAI's `/v1/responses` endpoint with the `x_search` tool, using `grok-4.20-reasoning` to process results. Your SuperGrok subscription covers the cost.
 
+## When to Pair With TweetClaw
+
+Use this repo when an OpenClaw agent needs SuperGrok-backed X search and cited summaries. For broader X/Twitter automation, pair it with [TweetClaw](https://github.com/Xquik-dev/tweetclaw):
+
+```bash
+openclaw plugins install @xquik/tweetclaw
+```
+
+TweetClaw covers structured Xquik workflows such as search tweets, search tweet replies, follower export, user lookup, media upload and download, direct messages, monitor tweets, webhooks, giveaway draws, and reviewed post tweets or post tweet replies. A practical flow is to use `x-search` for SuperGrok research, then use TweetClaw when the agent needs X API-style actions or recurring automation around the accounts and posts it found.
+
 ## Requirements
 
 - **OpenClaw** installed and running
@@ -136,6 +146,7 @@ If neither is available, you'll get an error directing you to set up OAuth.
 - **CORS restricted** — Callback only accepts requests from `accounts.x.ai` / `auth.x.ai`
 - **Token storage** — Stored at `~/.openclaw/xai-oauth.json` with `0600` permissions
 - **No token leakage** — Tokens never printed to logs or agent context
+- **Token command caution** - `xai-oauth.py token` prints a live access token for local scripting, so do not paste its output into chat, logs, issues, or PRs
 - **Auto-refresh** — JWT expiry checked, tokens refreshed 2 minutes before expiration
 
 ## Architecture
